@@ -1543,7 +1543,7 @@ $.mobile.widget = $.Widget;
 
 /*!
  * jQuery hashchange event - v1.3 - 7/21/2010
- * http://benalman.com/projects/jquery-hashchange-plugin/
+ * http://benalman.com/notes/jquery-hashchange-plugin/
  * 
  * Copyright (c) 2010 "Cowboy" Ben Alman
  * Dual licensed under the MIT and GPL licenses.
@@ -1554,7 +1554,7 @@ $.mobile.widget = $.Widget;
 //
 // *Version: 1.3, Last updated: 7/21/2010*
 // 
-// Project Home - http://benalman.com/projects/jquery-hashchange-plugin/
+// note Home - http://benalman.com/notes/jquery-hashchange-plugin/
 // GitHub       - http://github.com/cowboy/jquery-hashchange/
 // Source       - http://github.com/cowboy/jquery-hashchange/raw/master/jquery.ba-hashchange.js
 // (Minified)   - http://github.com/cowboy/jquery-hashchange/raw/master/jquery.ba-hashchange.min.js (0.8kb gzipped)
@@ -1570,8 +1570,8 @@ $.mobile.widget = $.Widget;
 // These working examples, complete with fully commented code, illustrate a few
 // ways in which this plugin can be used.
 // 
-// hashchange event - http://benalman.com/code/projects/jquery-hashchange/examples/hashchange/
-// document.domain - http://benalman.com/code/projects/jquery-hashchange/examples/document_domain/
+// hashchange event - http://benalman.com/code/notes/jquery-hashchange/examples/hashchange/
+// document.domain - http://benalman.com/code/notes/jquery-hashchange/examples/document_domain/
 // 
 // About: Support and Testing
 // 
@@ -1582,7 +1582,7 @@ $.mobile.widget = $.Widget;
 // jQuery Versions - 1.2.6, 1.3.2, 1.4.1, 1.4.2
 // Browsers Tested - Internet Explorer 6-8, Firefox 2-4, Chrome 5-6, Safari 3.2-5,
 //                   Opera 9.6-10.60, iPhone 3.1, Android 1.6-2.2, BlackBerry 4.6-5.
-// Unit Tests      - http://benalman.com/code/projects/jquery-hashchange/unit/
+// Unit Tests      - http://benalman.com/code/notes/jquery-hashchange/unit/
 // 
 // About: Known issues
 // 
@@ -1592,10 +1592,10 @@ $.mobile.widget = $.Widget;
 // window.onhashchange abstraction. See the following examples for more
 // information:
 // 
-// Chrome: Back Button - http://benalman.com/code/projects/jquery-hashchange/examples/bug-chrome-back-button/
-// Firefox: Remote XMLHttpRequest - http://benalman.com/code/projects/jquery-hashchange/examples/bug-firefox-remote-xhr/
-// WebKit: Back Button in an Iframe - http://benalman.com/code/projects/jquery-hashchange/examples/bug-webkit-hash-iframe/
-// Safari: Back Button from a different domain - http://benalman.com/code/projects/jquery-hashchange/examples/bug-safari-back-from-diff-domain/
+// Chrome: Back Button - http://benalman.com/code/notes/jquery-hashchange/examples/bug-chrome-back-button/
+// Firefox: Remote XMLHttpRequest - http://benalman.com/code/notes/jquery-hashchange/examples/bug-firefox-remote-xhr/
+// WebKit: Back Button in an Iframe - http://benalman.com/code/notes/jquery-hashchange/examples/bug-webkit-hash-iframe/
+// Safari: Back Button from a different domain - http://benalman.com/code/notes/jquery-hashchange/examples/bug-safari-back-from-diff-domain/
 // 
 // Also note that should a browser natively support the window.onhashchange 
 // event, but not report that it does, the fallback polling loop will be used.
@@ -2363,18 +2363,18 @@ if ( !$.support.boxShadow ) {
 			// URL as well as some other commonly used sub-parts. When used with RegExp.exec()
 			// or String.match, it parses the URL into a results array that looks like this:
 			//
-			//     [0]: http://jblas:password@mycompany.com:8080/mail/inbox?msg=1234&type=unread#msg-content
-			//     [1]: http://jblas:password@mycompany.com:8080/mail/inbox?msg=1234&type=unread
-			//     [2]: http://jblas:password@mycompany.com:8080/mail/inbox
-			//     [3]: http://jblas:password@mycompany.com:8080
+			//     [0]: http://jblas:password@mycontent.com:8080/mail/inbox?msg=1234&type=unread#msg-content
+			//     [1]: http://jblas:password@mycontent.com:8080/mail/inbox?msg=1234&type=unread
+			//     [2]: http://jblas:password@mycontent.com:8080/mail/inbox
+			//     [3]: http://jblas:password@mycontent.com:8080
 			//     [4]: http:
 			//     [5]: //
-			//     [6]: jblas:password@mycompany.com:8080
+			//     [6]: jblas:password@mycontent.com:8080
 			//     [7]: jblas:password
 			//     [8]: jblas
 			//     [9]: password
-			//    [10]: mycompany.com:8080
-			//    [11]: mycompany.com
+			//    [10]: mycontent.com:8080
+			//    [11]: mycontent.com
 			//    [12]: 8080
 			//    [13]: /mail/inbox
 			//    [14]: /mail/
@@ -12799,7 +12799,7 @@ $.widget( "mobile.controlgroup", $.extend( {
 			this.element.closest( ".ui-page" ).addClass( "ui-android-2x-fixed" );
 		},
 		//this addresses issues #4337 Fixed header problem after scrolling content on iOS and Android
-		//and device bugs project issue #1 Form elements can lose click hit area in position: fixed containers.
+		//and device bugs note issue #1 Form elements can lose click hit area in position: fixed containers.
 		//this also addresses not on fixed toolbars page in docs
 		//adding 1px of padding to the bottom then removing it causes a "redraw"
 		//which positions the toolbars correctly (they will always be visually correct)
@@ -14311,7 +14311,7 @@ $.widget( "mobile.filterable", $.mobile.filterable, {
 		return ret;
 	},
 
-	// The listview implementation accompanying this filterable backcompat layer will call
+	// The listview implementation accontenting this filterable backcompat layer will call
 	// filterable.refresh() after it's done refreshing the listview to make sure the filterable
 	// filters out any new items added. However, when the listview refresh has been initiated by
 	// the filterable itself, then such filtering has already taken place, and calling the

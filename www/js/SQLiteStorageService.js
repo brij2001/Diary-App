@@ -9,10 +9,10 @@ SQLiteStorageService = function () {
         var deferred = $.Deferred();
         db.transaction(function(tx) {
             tx.executeSql(
-                'CREATE TABLE IF NOT EXISTS projects ' +
-                '(id integer primary key, name text, company text, description text, latitude real, longitude real)'
+                'CREATE TABLE IF NOT EXISTS notes ' +
+                '(id integer primary key, name text, description text, content text, latitude real, longitude real)'
             ,[], function(tx, res) {
-                tx.executeSql('DELETE FROM projects', [], function(tx, res) {
+                tx.executeSql('DELETE FROM notes', [], function(tx, res) {
                     deferred.resolve(service);
                 }, function(tx, res) {
                     deferred.reject('Error initializing database');
@@ -24,25 +24,25 @@ SQLiteStorageService = function () {
         return deferred.promise();
     }
 
-    service.getProjects = function() {
+    service.getnotes = function() {
     	var deferred = $.Deferred();
 
         db.transaction(function(tx) {
-            tx.executeSql('SELECT * FROM projects', [], function(tx, res) {
+            tx.executeSql('SELECT * FROM notes', [], function(tx, res) {
 
-                var projects = [];
+                var notes = [];
                 console.log(res.rows.length);
                 for(var i = 0; i < res.rows.length; i++) {
-                    var project = { name: res.rows.item(i).name, company: res.rows.item(i).company, description: res.rows.item(i).description };
+                    var note = { name: res.rows.item(i).name, content: res.rows.item(i).content, content: res.rows.item(i).content };
                     if (res.rows.item(i).latitude && res.rows.item(i).longitude) {
-                        project.location = {
+                        note.location = {
                             latitude: res.rows.item(i).latitude,
                             longitude: res.rows.item(i).longitude
                         }
                     }
-                    projects.push(project);
+                    notes.push(note);
                 }
-                deferred.resolve(projects);
+                deferred.resolve(notes);
 
             }, function(e) {
                 deferred.reject(e);
@@ -51,7 +51,7 @@ SQLiteStorageService = function () {
         return deferred.promise();
     }
 
-    service.addProject = function(name, company, description, addLocation) {
+    service.addnote = function(name, content, content, addLocation) {
         var deferred = $.Deferred();
         console.log(db);
         if (addLocation) {
@@ -62,8 +62,8 @@ SQLiteStorageService = function () {
 
                     db.transaction(
                     	function(tx) {
-                            tx.executeSql('INSERT INTO projects (name, company, description, latitude, longitude) VALUES (?,?,?,?,?)',
-                                [name, company, description, lat, lon],
+                            tx.executeSql('INSERT INTO notes (name, content, content, latitude, longitude) VALUES (?,?,?,?,?)',
+                                [name, content, content, lat, lon],
                                 function(tx, res)
                             {
                                 console.log('success');
@@ -71,7 +71,7 @@ SQLiteStorageService = function () {
                             }, function(e)
                             {
                                 console.log('failure');
-                                deferred.reject('Error posting a new project');
+                                deferred.reject('Error posting a new note');
                             });
                         },
                         function() {
@@ -82,13 +82,13 @@ SQLiteStorageService = function () {
                 function() {
                     deferred.reject(
                             'We could not fetch your current location. ' +
-                            'Please try again or post a project without adding a location');
+                            'Please try again or post a note without adding a location');
                 },
                 {maximumAge: 60000, timeout: 5000, enableHighAccuracy: true}
             );
         } else {
             db.transaction(function(tx) {
-                tx.executeSql('INSERT INTO projects (name, company, description) VALUES (?,?,?)', [name, company, description], function(tx, res) {
+                tx.executeSql('INSERT INTO notes (name, content, content) VALUES (?,?,?)', [name, content, content], function(tx, res) {
                     deferred.resolve();
                 }, function(e) {
                     deferred.reject(e);

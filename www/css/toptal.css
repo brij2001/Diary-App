@@ -66,13 +66,13 @@ footer {
 	width:100%;
 
 }
-.project {
+.note {
 	margin-bottom:20px;
 	padding: 10px;
 	background:#fff;
 	font-family:"Open Sans", Helvetica, Arial;
 }
-.project span.project-name {
+.note span.note-name {
 	font-size: 1.2em;
 	font-weight:bold;
 	padding-bottom:10px;
@@ -82,7 +82,7 @@ footer {
 	display:block;
 }
 
-.project > .project-description-wrapper {
+.note > .note-content-wrapper {
 	margin-top: 5px;
 }
 

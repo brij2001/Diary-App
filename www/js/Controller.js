@@ -39,29 +39,29 @@ var Controller = function() {
 
             var $tab = $('#tab-content');
             $tab.empty();
-            $("#tab-content").load("./views/post-project-view.html", function(data) {
-                $('#tab-content').find('#post-project-form').on('submit', self.postProject);
+            $("#tab-content").load("./views/post-note-view.html", function(data) {
+                $('#tab-content').find('#post-note-form').on('submit', self.postnote);
             });
         },
 
 
-        postProject: function(e) {
+        postnote: function(e) {
 
             e.preventDefault();
-            var name = $('#project-name').val();
-            var description = $('#project-description').val();
-            var company = $('#company').val();
+            var name = $('#note-name').val();
+            var content = $('#note-content').val();
+            var content = $('#content').val();
             var addLocation = $('#include-location').is(':checked');
 
-            if (!name || !description || !company) {
+            if (!name || !content || !content) {
                 alert('Please fill in all fields');
                 return;
             } else {
-                var result = self.storageService.addProject(
-                    name, company, description, addLocation);
+                var result = self.storageService.addnote(
+                    name, content, content, addLocation);
 
                 result.done(function() {
-                    alert('Project successfully added');
+                    alert('note successfully added');
                     self.renderSearchView();
                 }).fail(function(error) {
                     alert(error);
@@ -77,32 +77,32 @@ var Controller = function() {
             var $tab = $('#tab-content');
             $tab.empty();
 
-            var $projectTemplate = null;
-            $("#tab-content").load("./views/search-project-view.html", function(data) {
+            var $noteTemplate = null;
+            $("#tab-content").load("./views/search-note-view.html", function(data) {
                 $('#addressSearch').on('click', function() {
                     alert('Not implemented');
                 });
 
-                $projectTemplate = $('.project').remove();
+                $noteTemplate = $('.note').remove();
 
-                var projects = self.storageService.getProjects().done(function(projects) {
+                var notes = self.storageService.getnotes().done(function(notes) {
 
-                    for(var idx in projects) {
-                        var $div = $projectTemplate.clone();
-                        var project = projects[idx];
+                    for(var idx in notes) {
+                        var $div = $noteTemplate.clone();
+                        var note = notes[idx];
 
-                        $div.find('.project-name').text(project.name);
-                        $div.find('.project-company').text(project.company);
-                        $div.find('.project-description').text(project.description);
+                        $div.find('.note-name').text(note.name);
+                        $div.find('.note-description').text(note.content);
+                        $div.find('.note-content').text(note.content);
 
-                        if (project.location) {
+                        if (note.location) {
                             var url =
                                 '<a target="_blank" href="https://www.google.com.au/maps/preview/@' +
-                                project.location.latitude + ',' + project.location.longitude + ',10z">Click to open map</a>';
+                                note.location.latitude + ',' + note.location.longitude + ',10z">Click to open map</a>';
 
-                            $div.find('.project-location').html(url);
+                            $div.find('.note-location').html(url);
                         } else {
-                            $div.find('.project-location').text("Not specified");
+                            $div.find('.note-location').text("Not specified");
                         }
 
                         $tab.append($div);
